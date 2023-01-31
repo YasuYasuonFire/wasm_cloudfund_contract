@@ -1,0 +1,597 @@
+{
+  "source": {
+    "hash": "0x551bd3fc7241c567084c26f43c8ec272dd3bf427109f2a814f589fae5fffe303",
+    "language": "ink! 3.3.1",
+    "compiler": "rustc 1.68.0-nightly"
+  },
+  "contract": {
+    "name": "campaign",
+    "version": "0.1.0",
+    "authors": [
+      "Sol2Ink"
+    ]
+  },
+  "V3": {
+    "spec": {
+      "constructors": [
+        {
+          "args": [
+            {
+              "label": "minimum",
+              "type": {
+                "displayName": [
+                  "u128"
+                ],
+                "type": 0
+              }
+            }
+          ],
+          "docs": [],
+          "label": "new",
+          "payable": false,
+          "selector": "0x9bae9d5e"
+        }
+      ],
+      "docs": [],
+      "events": [],
+      "messages": [
+        {
+          "args": [],
+          "docs": [],
+          "label": "contribute",
+          "mutates": true,
+          "payable": true,
+          "returnType": {
+            "displayName": [
+              "Result"
+            ],
+            "type": 10
+          },
+          "selector": "0x9b3544d0"
+        },
+        {
+          "args": [
+            {
+              "label": "description",
+              "type": {
+                "displayName": [
+                  "String"
+                ],
+                "type": 8
+              }
+            },
+            {
+              "label": "value",
+              "type": {
+                "displayName": [
+                  "u128"
+                ],
+                "type": 0
+              }
+            },
+            {
+              "label": "recipient",
+              "type": {
+                "displayName": [
+                  "AccountId"
+                ],
+                "type": 2
+              }
+            }
+          ],
+          "docs": [],
+          "label": "create_request",
+          "mutates": true,
+          "payable": true,
+          "returnType": {
+            "displayName": [
+              "Result"
+            ],
+            "type": 12
+          },
+          "selector": "0xa90550ab"
+        },
+        {
+          "args": [],
+          "docs": [],
+          "label": "approve_request",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "Result"
+            ],
+            "type": 10
+          },
+          "selector": "0x463a3d58"
+        },
+        {
+          "args": [],
+          "docs": [],
+          "label": "finalize_request",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "Result"
+            ],
+            "type": 12
+          },
+          "selector": "0xf7227c67"
+        },
+        {
+          "args": [
+            {
+              "label": "new_owner",
+              "type": {
+                "displayName": [
+                  "ownable_external",
+                  "TransferOwnershipInput1"
+                ],
+                "type": 2
+              }
+            }
+          ],
+          "docs": [
+            " Transfers ownership of the contract to a `new_owner`.",
+            " Can only be called by the current owner.",
+            "",
+            " On success a `OwnershipTransferred` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Panics with `CallerIsNotOwner` error if caller is not owner.",
+            "",
+            " Panics with `NewOwnerIsZero` error if new owner's address is zero."
+          ],
+          "label": "Ownable::transfer_ownership",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "ownable_external",
+              "TransferOwnershipOutput"
+            ],
+            "type": 12
+          },
+          "selector": "0x11f43efd"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Leaves the contract without owner. It will not be possible to call",
+            " owner's functions anymore. Can only be called by the current owner.",
+            "",
+            " NOTE: Renouncing ownership will leave the contract without an owner,",
+            " thereby removing any functionality that is only available to the owner.",
+            "",
+            " On success a `OwnershipTransferred` event is emitted.",
+            "",
+            " # Errors",
+            "",
+            " Panics with `CallerIsNotOwner` error if caller is not owner"
+          ],
+          "label": "Ownable::renounce_ownership",
+          "mutates": true,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "ownable_external",
+              "RenounceOwnershipOutput"
+            ],
+            "type": 12
+          },
+          "selector": "0x5e228753"
+        },
+        {
+          "args": [],
+          "docs": [
+            " Returns the address of the current owner."
+          ],
+          "label": "Ownable::owner",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "ownable_external",
+              "OwnerOutput"
+            ],
+            "type": 2
+          },
+          "selector": "0x4fa43c8c"
+        }
+      ]
+    },
+    "storage": {
+      "struct": {
+        "fields": [
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x24c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 0
+                      }
+                    },
+                    "name": "minimum_contribution"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x25c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 1
+                      }
+                    },
+                    "name": "approvers"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x26c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 0
+                      }
+                    },
+                    "name": "approvers_count"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x27c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 8
+                      }
+                    },
+                    "name": "description"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x28c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 0
+                      }
+                    },
+                    "name": "value"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x29c2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 2
+                      }
+                    },
+                    "name": "recipient"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x2ac2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 5
+                      }
+                    },
+                    "name": "complete"
+                  },
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0x2bc2cae300000000000000000000000000000000000000000000000000000000",
+                        "ty": 0
+                      }
+                    },
+                    "name": "approval_count"
+                  }
+                ]
+              }
+            },
+            "name": "data"
+          },
+          {
+            "layout": {
+              "struct": {
+                "fields": [
+                  {
+                    "layout": {
+                      "cell": {
+                        "key": "0xb36ee29c00000000000000000000000000000000000000000000000000000000",
+                        "ty": 2
+                      }
+                    },
+                    "name": "owner"
+                  },
+                  {
+                    "layout": {
+                      "enum": {
+                        "dispatchKey": "0xb46ee29c00000000000000000000000000000000000000000000000000000000",
+                        "variants": {
+                          "0": {
+                            "fields": [
+                              {
+                                "layout": {
+                                  "cell": {
+                                    "key": "0xb56ee29c00000000000000000000000000000000000000000000000000000000",
+                                    "ty": 9
+                                  }
+                                },
+                                "name": null
+                              }
+                            ]
+                          },
+                          "1": {
+                            "fields": []
+                          }
+                        }
+                      }
+                    },
+                    "name": "_reserved"
+                  }
+                ]
+              }
+            },
+            "name": "ownable"
+          }
+        ]
+      }
+    },
+    "types": [
+      {
+        "id": 0,
+        "type": {
+          "def": {
+            "primitive": "u128"
+          }
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "type": 6
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "K",
+              "type": 2
+            },
+            {
+              "name": "V",
+              "type": 5
+            }
+          ],
+          "path": [
+            "openbrush_lang",
+            "storage",
+            "mapping",
+            "Mapping"
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "type": 3,
+                  "typeName": "[u8; 32]"
+                }
+              ]
+            }
+          },
+          "path": [
+            "ink_env",
+            "types",
+            "AccountId"
+          ]
+        }
+      },
+      {
+        "id": 3,
+        "type": {
+          "def": {
+            "array": {
+              "len": 32,
+              "type": 4
+            }
+          }
+        }
+      },
+      {
+        "id": 4,
+        "type": {
+          "def": {
+            "primitive": "u8"
+          }
+        }
+      },
+      {
+        "id": 5,
+        "type": {
+          "def": {
+            "primitive": "bool"
+          }
+        }
+      },
+      {
+        "id": 6,
+        "type": {
+          "def": {
+            "sequence": {
+              "type": 7
+            }
+          }
+        }
+      },
+      {
+        "id": 7,
+        "type": {
+          "def": {
+            "tuple": [
+              2,
+              5
+            ]
+          }
+        }
+      },
+      {
+        "id": 8,
+        "type": {
+          "def": {
+            "primitive": "str"
+          }
+        }
+      },
+      {
+        "id": 9,
+        "type": {
+          "def": {
+            "tuple": []
+          }
+        }
+      },
+      {
+        "id": 10,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 9
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Ok"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 11
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Err"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 9
+            },
+            {
+              "name": "E",
+              "type": 11
+            }
+          ],
+          "path": [
+            "Result"
+          ]
+        }
+      },
+      {
+        "id": 11,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 8,
+                      "typeName": "String"
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Custom"
+                }
+              ]
+            }
+          },
+          "path": [
+            "campaign",
+            "campaign",
+            "Error"
+          ]
+        }
+      },
+      {
+        "id": 12,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "fields": [
+                    {
+                      "type": 9
+                    }
+                  ],
+                  "index": 0,
+                  "name": "Ok"
+                },
+                {
+                  "fields": [
+                    {
+                      "type": 13
+                    }
+                  ],
+                  "index": 1,
+                  "name": "Err"
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "T",
+              "type": 9
+            },
+            {
+              "name": "E",
+              "type": 13
+            }
+          ],
+          "path": [
+            "Result"
+          ]
+        }
+      },
+      {
+        "id": 13,
+        "type": {
+          "def": {
+            "variant": {
+              "variants": [
+                {
+                  "index": 0,
+                  "name": "CallerIsNotOwner"
+                },
+                {
+                  "index": 1,
+                  "name": "NewOwnerIsZero"
+                }
+              ]
+            }
+          },
+          "path": [
+            "openbrush_contracts",
+            "traits",
+            "errors",
+            "ownable",
+            "OwnableError"
+          ]
+        }
+      }
+    ]
+  }
+}
