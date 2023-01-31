@@ -7,10 +7,15 @@
 ///SPDX-License-Identifier: GPL-3.0
 #[openbrush::contract]
 pub mod campaign {
-    use ink_prelude::string::String;
     use ink_prelude::vec::Vec;
     use ink_storage::traits::SpreadAllocate;
+    use openbrush::storage::Mapping;
     use openbrush::traits::Storage;
+    use openbrush::traits::String;
+    use openbrush::{
+        contracts::ownable::*,
+        modifiers,
+    };
     use scale::Decode;
     use scale::Encode;
 
@@ -18,38 +23,32 @@ pub mod campaign {
     #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
     pub enum Error {
         Custom(String),
-    }
-
-
-    pub const STORAGE_KEY: u32 = openbrush::storage_unique_key!(Data);
-
-    #[derive(Default, Debug)]
-    #[openbrush::upgradeable_storage(STORAGE_KEY)]
-    pub struct Data {
-        pub manager: AccountId,
-        pub minimum_contribution: u128,
-        pub approvers: Vec<AccountId>,
-    }
+    }    
 
     #[ink(storage)]
     #[derive(Default, SpreadAllocate, Storage)]
     pub struct Campaign {
-        #[storage_field]
-        data: Data,
+        minimum_contribution: u128,
+        approvers: Mapping<AccountId, bool>,
+        approvers_count: u128,
+        //request
+        description: Option<String>,
+        value: u128,
+        recipient: AccountId,
+        complete: bool,
+        approval_count: u128,
     }
-
     impl Campaign {
         #[ink(constructor)]
         pub fn new(minimum: u128) -> Self {
             ink_lang::codegen::initialize_contract(|instance: &mut Self| {
-                instance.data.manager = instance.env().caller();
-                instance.data.minimum_contribution = minimum;
+                instance.minimum_contribution = minimum;
             })
         }
 
         #[ink(message, payable)]
         pub fn contribute(&mut self) -> Result<(), Error> {
-            if self.env().transferred_value() <= self.data.minimum_contribution {
+            if self.env().transferred_value() <= self.minimum_contribution {
                 return Err(Error::Custom(String::from(
                     "SMART CONTRACT MAKE PANIC BEEP BEEP BEEP",
                 )));

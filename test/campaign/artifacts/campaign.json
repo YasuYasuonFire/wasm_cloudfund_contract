@@ -1,7 +1,7 @@
 {
   "source": {
-    "hash": "0x8caa3e4f995f7a14f514471ff60705cece83bd4b9b4667be82ed0ffeb33fe6b8",
-    "language": "ink! 3.3.1",
+    "hash": "0x82497c7d9e4d2dc360c79573f2ae1d49c8fa1520631334608fe03fa64ccb3ef2",
+    "language": "ink! 3.4.0",
     "compiler": "rustc 1.68.0-nightly"
   },
   "contract": {
@@ -22,7 +22,7 @@
                 "displayName": [
                   "u128"
                 ],
-                "type": 3
+                "type": 0
               }
             }
           ],
@@ -47,7 +47,7 @@
             "displayName": [
               "Result"
             ],
-            "type": 5
+            "type": 9
           },
           "selector": "0x9b3544d0"
         }
@@ -58,39 +58,92 @@
         "fields": [
           {
             "layout": {
-              "struct": {
-                "fields": [
-                  {
-                    "layout": {
-                      "cell": {
-                        "key": "0x24c2cae300000000000000000000000000000000000000000000000000000000",
-                        "ty": 0
-                      }
-                    },
-                    "name": "manager"
-                  },
-                  {
-                    "layout": {
-                      "cell": {
-                        "key": "0x25c2cae300000000000000000000000000000000000000000000000000000000",
-                        "ty": 3
-                      }
-                    },
-                    "name": "minimum_contribution"
-                  },
-                  {
-                    "layout": {
-                      "cell": {
-                        "key": "0x26c2cae300000000000000000000000000000000000000000000000000000000",
-                        "ty": 4
-                      }
-                    },
-                    "name": "approvers"
-                  }
-                ]
+              "cell": {
+                "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
               }
             },
-            "name": "data"
+            "name": "minimum_contribution"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0100000000000000000000000000000000000000000000000000000000000000",
+                "ty": 1
+              }
+            },
+            "name": "approvers"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0200000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "approvers_count"
+          },
+          {
+            "layout": {
+              "enum": {
+                "dispatchKey": "0x0300000000000000000000000000000000000000000000000000000000000000",
+                "variants": {
+                  "0": {
+                    "fields": [
+                      {
+                        "layout": {
+                          "cell": {
+                            "key": "0x0400000000000000000000000000000000000000000000000000000000000000",
+                            "ty": 8
+                          }
+                        },
+                        "name": null
+                      }
+                    ]
+                  },
+                  "1": {
+                    "fields": []
+                  }
+                }
+              }
+            },
+            "name": "description"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0400000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "value"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0500000000000000000000000000000000000000000000000000000000000000",
+                "ty": 2
+              }
+            },
+            "name": "recipient"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0600000000000000000000000000000000000000000000000000000000000000",
+                "ty": 5
+              }
+            },
+            "name": "complete"
+          },
+          {
+            "layout": {
+              "cell": {
+                "key": "0x0700000000000000000000000000000000000000000000000000000000000000",
+                "ty": 0
+              }
+            },
+            "name": "approval_count"
           }
         ]
       }
@@ -100,10 +153,48 @@
         "id": 0,
         "type": {
           "def": {
+            "primitive": "u128"
+          }
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "def": {
             "composite": {
               "fields": [
                 {
-                  "type": 1,
+                  "type": 6
+                }
+              ]
+            }
+          },
+          "params": [
+            {
+              "name": "K",
+              "type": 2
+            },
+            {
+              "name": "V",
+              "type": 5
+            }
+          ],
+          "path": [
+            "openbrush_lang",
+            "storage",
+            "mapping",
+            "Mapping"
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "type": {
+          "def": {
+            "composite": {
+              "fields": [
+                {
+                  "type": 3,
                   "typeName": "[u8; 32]"
                 }
               ]
@@ -117,29 +208,13 @@
         }
       },
       {
-        "id": 1,
+        "id": 3,
         "type": {
           "def": {
             "array": {
               "len": 32,
-              "type": 2
+              "type": 4
             }
-          }
-        }
-      },
-      {
-        "id": 2,
-        "type": {
-          "def": {
-            "primitive": "u8"
-          }
-        }
-      },
-      {
-        "id": 3,
-        "type": {
-          "def": {
-            "primitive": "u128"
           }
         }
       },
@@ -147,9 +222,7 @@
         "id": 4,
         "type": {
           "def": {
-            "sequence": {
-              "type": 0
-            }
+            "primitive": "u8"
           }
         }
       },
@@ -157,12 +230,51 @@
         "id": 5,
         "type": {
           "def": {
+            "primitive": "bool"
+          }
+        }
+      },
+      {
+        "id": 6,
+        "type": {
+          "def": {
+            "sequence": {
+              "type": 7
+            }
+          }
+        }
+      },
+      {
+        "id": 7,
+        "type": {
+          "def": {
+            "tuple": [
+              2,
+              5
+            ]
+          }
+        }
+      },
+      {
+        "id": 8,
+        "type": {
+          "def": {
+            "sequence": {
+              "type": 4
+            }
+          }
+        }
+      },
+      {
+        "id": 9,
+        "type": {
+          "def": {
             "variant": {
               "variants": [
                 {
                   "fields": [
                     {
-                      "type": 6
+                      "type": 10
                     }
                   ],
                   "index": 0,
@@ -171,7 +283,7 @@
                 {
                   "fields": [
                     {
-                      "type": 7
+                      "type": 11
                     }
                   ],
                   "index": 1,
@@ -183,11 +295,11 @@
           "params": [
             {
               "name": "T",
-              "type": 6
+              "type": 10
             },
             {
               "name": "E",
-              "type": 7
+              "type": 11
             }
           ],
           "path": [
@@ -196,7 +308,7 @@
         }
       },
       {
-        "id": 6,
+        "id": 10,
         "type": {
           "def": {
             "tuple": []
@@ -204,7 +316,7 @@
         }
       },
       {
-        "id": 7,
+        "id": 11,
         "type": {
           "def": {
             "variant": {
@@ -227,14 +339,6 @@
             "campaign",
             "Error"
           ]
-        }
-      },
-      {
-        "id": 8,
-        "type": {
-          "def": {
-            "primitive": "str"
-          }
         }
       }
     ]

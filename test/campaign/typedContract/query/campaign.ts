@@ -31,7 +31,7 @@ export default class Methods {
 	"contribute" (
 		__options ? : GasLimitAndRequiredValue,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "contribute", [], __options , (result) => { return handleReturnType(result, getTypeDescription(5, 'campaign')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "contribute", [], __options , (result) => { return handleReturnType(result, getTypeDescription(9, 'campaign')); });
 	}
 
 }

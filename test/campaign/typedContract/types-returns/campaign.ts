@@ -4,11 +4,11 @@ import type {ReturnNumber} from '@supercolony/typechain-types';
 export type AccountId = string | number[]
 
 export interface Error {
-	custom ? : string
+	custom ? : Array<number>
 }
 
 export class ErrorBuilder {
-	static Custom(value: string): Error {
+	static Custom(value: Array<number>): Error {
 		return {
 			custom: value,
 		};
