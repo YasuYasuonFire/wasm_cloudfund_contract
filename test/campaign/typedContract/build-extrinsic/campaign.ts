@@ -17,13 +17,109 @@ export default class Methods {
 		this.__nativeContract = nativeContract;
 	}
 	/**
-	 * contribute
+	 * getMinimum
 	 *
 	*/
-	"contribute" (
+	"getMinimum" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getMinimum", [], __options);
+	}
+
+	/**
+	 * getApproversCount
+	 *
+	*/
+	"getApproversCount" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getApproversCount", [], __options);
+	}
+
+	/**
+	 * getApprovalCount
+	 *
+	*/
+	"getApprovalCount" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getApprovalCount", [], __options);
+	}
+
+	/**
+	 * getDescription
+	 *
+	*/
+	"getDescription" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getDescription", [], __options);
+	}
+
+	/**
+	 * getValue
+	 *
+	*/
+	"getValue" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getValue", [], __options);
+	}
+
+	/**
+	 * getRecipient
+	 *
+	*/
+	"getRecipient" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getRecipient", [], __options);
+	}
+
+	/**
+	 * getBalance
+	 *
+	*/
+	"getBalance" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getBalance", [], __options);
+	}
+
+	/**
+	 * createRequest
+	 *
+	 * @param { Array<(number | string | BN)> | null } description,
+	 * @param { (string | number | BN) } value,
+	 * @param { ArgumentTypes.AccountId } recipient,
+	*/
+	"createRequest" (
+		description: Array<(number | string | BN)> | null,
+		value: (string | number | BN),
+		recipient: ArgumentTypes.AccountId,
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "createRequest", [description, value, recipient], __options);
+	}
+
+	/**
+	 * approveRequest
+	 *
+	*/
+	"approveRequest" (
 		__options: GasLimitAndRequiredValue,
 	){
-		return buildSubmittableExtrinsic( this.__nativeContract, "contribute", [], __options);
+		return buildSubmittableExtrinsic( this.__nativeContract, "approveRequest", [], __options);
+	}
+
+	/**
+	 * finalizeRequest
+	 *
+	*/
+	"finalizeRequest" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "finalizeRequest", [], __options);
 	}
 
 }

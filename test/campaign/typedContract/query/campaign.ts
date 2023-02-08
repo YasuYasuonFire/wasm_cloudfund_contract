@@ -24,14 +24,119 @@ export default class Methods {
 	}
 
 	/**
-	* contribute
+	* getMinimum
+	*
+	* @returns { ReturnNumber }
+	*/
+	"getMinimum" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getMinimum", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* getApproversCount
+	*
+	* @returns { ReturnNumber }
+	*/
+	"getApproversCount" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApproversCount", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* getApprovalCount
+	*
+	* @returns { ReturnNumber }
+	*/
+	"getApprovalCount" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApprovalCount", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* getDescription
+	*
+	* @returns { Array<number> | null }
+	*/
+	"getDescription" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Array<number> | null > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getDescription", [], __options , (result) => { return handleReturnType(result, getTypeDescription(9, 'campaign')); });
+	}
+
+	/**
+	* getValue
+	*
+	* @returns { ReturnNumber }
+	*/
+	"getValue" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getValue", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* getRecipient
+	*
+	* @returns { ReturnTypes.AccountId }
+	*/
+	"getRecipient" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnTypes.AccountId > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getRecipient", [], __options , (result) => { return handleReturnType(result, getTypeDescription(0, 'campaign')); });
+	}
+
+	/**
+	* getBalance
+	*
+	* @returns { ReturnNumber }
+	*/
+	"getBalance" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< ReturnNumber > >{
+		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getBalance", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
+	}
+
+	/**
+	* createRequest
+	*
+	* @param { Array<(number | string | BN)> | null } description,
+	* @param { (string | number | BN) } value,
+	* @param { ArgumentTypes.AccountId } recipient,
+	* @returns { Result<null, ReturnTypes.OwnableError> }
+	*/
+	"createRequest" (
+		description: Array<(number | string | BN)> | null,
+		value: (string | number | BN),
+		recipient: ArgumentTypes.AccountId,
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<null, ReturnTypes.OwnableError> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "createRequest", [description, value, recipient], __options , (result) => { return handleReturnType(result, getTypeDescription(10, 'campaign')); });
+	}
+
+	/**
+	* approveRequest
 	*
 	* @returns { Result<null, ReturnTypes.Error> }
 	*/
-	"contribute" (
+	"approveRequest" (
 		__options ? : GasLimitAndRequiredValue,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "contribute", [], __options , (result) => { return handleReturnType(result, getTypeDescription(9, 'campaign')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "approveRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(13, 'campaign')); });
+	}
+
+	/**
+	* finalizeRequest
+	*
+	* @returns { Result<null, ReturnTypes.Error> }
+	*/
+	"finalizeRequest" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Result<null, ReturnTypes.Error> > >{
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "finalizeRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(13, 'campaign')); });
 	}
 
 }

@@ -3,6 +3,11 @@ import type {ReturnNumber} from '@supercolony/typechain-types';
 
 export type AccountId = string | number[]
 
+export enum OwnableError {
+	callerIsNotOwner = 'CallerIsNotOwner',
+	newOwnerIsZero = 'NewOwnerIsZero'
+}
+
 export interface Error {
 	custom ? : Array<number>
 }
