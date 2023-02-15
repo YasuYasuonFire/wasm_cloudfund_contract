@@ -27,26 +27,6 @@ export default class Methods {
 	}
 
 	/**
-	 * getApproversCount
-	 *
-	*/
-	"getApproversCount" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__nativeContract, "getApproversCount", [], __options);
-	}
-
-	/**
-	 * getApprovalCount
-	 *
-	*/
-	"getApprovalCount" (
-		__options: GasLimit,
-	){
-		return buildSubmittableExtrinsic( this.__nativeContract, "getApprovalCount", [], __options);
-	}
-
-	/**
 	 * getDescription
 	 *
 	*/

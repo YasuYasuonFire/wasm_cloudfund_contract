@@ -6,7 +6,7 @@
 pub mod campaign {
     use ink_storage::traits::SpreadAllocate;
     //use ink_env::transfer;
-    use openbrush::storage::Mapping;
+    //use openbrush::storage::Mapping;
     use openbrush::traits::Storage;
     use openbrush::traits::String;
     use openbrush::{
@@ -26,8 +26,8 @@ pub mod campaign {
     pub struct Campaign {
         owner : AccountId,
         minimum_contribution: u128,
-        approvers: Mapping<AccountId, bool>,
-        approvers_count: u128,
+        //approvers: Mapping<AccountId, bool>,
+        //approvers_count: u128,
         //request
         description: Option<String>,
         value: u128,
@@ -52,17 +52,17 @@ pub mod campaign {
             self.minimum_contribution
         }
 
-        /// Simply return value.
-        #[ink(message)]
-        pub fn get_approvers_count(&self) -> u128 {
-            self.approvers_count
-        }
+        // /// Simply return value.
+        // #[ink(message)]
+        // pub fn get_approvers_count(&self) -> u128 {
+        //     self.approvers_count
+        // }
 
-        /// Simply return value.
-        #[ink(message)]
-        pub fn get_approval_count(&self) -> u128 {
-            self.approval_count
-        }
+        // /// Simply return value.
+        // #[ink(message)]
+        // pub fn get_approval_count(&self) -> u128 {
+        //     self.approval_count
+        // }
 
         /// Simply return value.
         #[ink(message)]
@@ -86,24 +86,6 @@ pub mod campaign {
         pub fn get_balance(&self) -> u128 {
             self.env().balance() 
         }
-
-
-        // #[ink(message, payable)]
-        // pub fn contribute(&mut self) -> Result<(), Error> {
-        //     if self.env().transferred_value() <= self.minimum_contribution {
-        //         return Err(Error::Custom(String::from(
-        //             "Your contribution is under minimum.",
-        //         )));
-        //     }
-        //     if !self.now_request{
-        //         return Err(Error::Custom(String::from(
-        //             "There is no proposal.",
-        //         )));
-        //     }
-        //     self.approvers.insert(&self.env().caller(), &true);
-        //     self.approvers_count += 1;
-        //     Ok(())
-        // }
 
         #[ink(message)]
         pub fn create_request(&mut self,description: Option<String>, value: u128, recipient: AccountId,
@@ -143,6 +125,9 @@ pub mod campaign {
                     panic!("error transferring")
                 }
                 self.now_request = false;
+                self.description = Some(String::new());
+                self.value = 0;
+                self.recipient = ink_env::AccountId::default();
             }
 
             Ok(())

@@ -40,30 +40,6 @@ export default class Methods {
 	}
 
 	/**
-	* getApproversCount
-	*
-	*/
-	"getApproversCount" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "getApproversCount", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, "campaign");
-		}, [], __options);
-	}
-
-	/**
-	* getApprovalCount
-	*
-	*/
-	"getApprovalCount" (
-		__options ? : GasLimit,
-	){
-		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "getApprovalCount", (events: EventRecord) => {
-			return decodeEvents(events, this.__nativeContract, "campaign");
-		}, [], __options);
-	}
-
-	/**
 	* getDescription
 	*
 	*/

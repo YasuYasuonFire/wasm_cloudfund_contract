@@ -35,28 +35,6 @@ export default class Methods {
 	}
 
 	/**
-	* getApproversCount
-	*
-	* @returns { ReturnNumber }
-	*/
-	"getApproversCount" (
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApproversCount", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
-	* getApprovalCount
-	*
-	* @returns { ReturnNumber }
-	*/
-	"getApprovalCount" (
-		__options ? : GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApprovalCount", [], __options , (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
 	* getDescription
 	*
 	* @returns { Array<number> | null }
@@ -64,7 +42,7 @@ export default class Methods {
 	"getDescription" (
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Array<number> | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "getDescription", [], __options , (result) => { return handleReturnType(result, getTypeDescription(9, 'campaign')); });
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getDescription", [], __options , (result) => { return handleReturnType(result, getTypeDescription(6, 'campaign')); });
 	}
 
 	/**
@@ -114,7 +92,7 @@ export default class Methods {
 		recipient: ArgumentTypes.AccountId,
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.OwnableError> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "createRequest", [description, value, recipient], __options , (result) => { return handleReturnType(result, getTypeDescription(10, 'campaign')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "createRequest", [description, value, recipient], __options , (result) => { return handleReturnType(result, getTypeDescription(7, 'campaign')); });
 	}
 
 	/**
@@ -125,7 +103,7 @@ export default class Methods {
 	"approveRequest" (
 		__options ? : GasLimitAndRequiredValue,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "approveRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(13, 'campaign')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "approveRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(10, 'campaign')); });
 	}
 
 	/**
@@ -136,7 +114,7 @@ export default class Methods {
 	"finalizeRequest" (
 		__options ? : GasLimit,
 	): Promise< QueryReturnType< Result<null, ReturnTypes.Error> > >{
-		return queryOkJSON( this.__nativeContract, this.__callerAddress, "finalizeRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(13, 'campaign')); });
+		return queryOkJSON( this.__nativeContract, this.__callerAddress, "finalizeRequest", [], __options , (result) => { return handleReturnType(result, getTypeDescription(10, 'campaign')); });
 	}
 
 }

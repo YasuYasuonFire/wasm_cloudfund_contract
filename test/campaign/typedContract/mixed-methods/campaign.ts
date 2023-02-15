@@ -46,28 +46,6 @@ export default class Methods {
 	}
 
 	/**
-	* getApproversCount
-	*
-	* @returns { ReturnNumber }
-	*/
-	"getApproversCount" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApproversCount", [], __options, (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
-	* getApprovalCount
-	*
-	* @returns { ReturnNumber }
-	*/
-	"getApprovalCount" (
-		__options: GasLimit,
-	): Promise< QueryReturnType< ReturnNumber > >{
-		return queryJSON< ReturnNumber >( this.__nativeContract, this.__callerAddress, "getApprovalCount", [], __options, (result) => { return new ReturnNumber(result as (number | string)); });
-	}
-
-	/**
 	* getDescription
 	*
 	* @returns { Array<number> | null }
@@ -75,7 +53,7 @@ export default class Methods {
 	"getDescription" (
 		__options: GasLimit,
 	): Promise< QueryReturnType< Array<number> | null > >{
-		return queryJSON( this.__nativeContract, this.__callerAddress, "getDescription", [], __options, (result) => { return handleReturnType(result, getTypeDescription(9, 'campaign')); });
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getDescription", [], __options, (result) => { return handleReturnType(result, getTypeDescription(6, 'campaign')); });
 	}
 
 	/**
